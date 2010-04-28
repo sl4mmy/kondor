@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module type="JAVA_MODULE" version="4">
+  <component name="NewModuleRootManager" inherit-compiler-output="false">
+    <output url="file://$MODULE_DIR$/.ide/classes/core/main" />
+    <output-test url="file://$MODULE_DIR$/.ide/classes/core/test" />
+    <exclude-output />
+    <content url="file://$MODULE_DIR$/core">
+      <sourceFolder url="file://$MODULE_DIR$/core/src/main/java" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/core/test/unit/java" isTestSource="true" />
+      <excludeFolder url="file://$MODULE_DIR$/core/target" />
+    </content>
+    <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" name="JUnit" level="project" />
+    <orderEntry type="inheritedJdk" />
+  </component>
+</module>
+
