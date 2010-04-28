@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<project>
+	<description>
+		Common properties shared across all submodules.
+	</description>
+
+	<property environment="env" />
+	<property file="build-numbers.properties" />
+
+	<property name="version.number" value="${build.major}.${build.minor}.${build.number}" />
+</project>

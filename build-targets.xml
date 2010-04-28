@@ -1,0 +1,121 @@
+<?xml version="1.0"?>
+<project>
+	<description>
+		Common functional targets shared across all submodules.
+	</description>
+
+	<macrodef name="_bump-number">
+		<attribute name="level" default="build.number" />
+		<sequential>
+			<propertyfile file="build-numbers.properties" comment=" Version numbers">
+				<entry key="@{level}" default="0" type="int" operation="+" />
+			</propertyfile>
+		</sequential>
+	</macrodef>
+
+	<macrodef name="_zero-number">
+		<attribute name="level" default="build.number" />
+		<sequential>
+			<propertyfile file="build-numbers.properties" comment=" Version numbers">
+				<entry key="@{level}" value="0" default="0" type="int" />
+			</propertyfile>
+		</sequential>
+	</macrodef>
+
+	<target name="--bump">
+		<_bump-number />
+	</target>
+
+	<target name="--bump-major">
+		<_bump-number level="build.major" />
+	</target>
+
+	<target name="--bump-minor">
+		<_bump-number level="build.minor" />
+	</target>
+
+	<target name="--zero">
+		<_zero-number />
+	</target>
+
+	<target name="--zero-minor">
+		<_zero-number level="build.minor" />
+	</target>
+
+	<target name="--clean">
+		<delete dir="core/target" />
+	</target>
+
+	<target name="--compile-init">
+		<mkdir dir="core/target/classes/main" />
+	</target>
+
+	<target name="--compile">
+		<javac srcdir="core/src/main/java" destdir="core/target/classes/main" classpathref="compile.path" source="1.5" target="1.5" />
+	</target>
+
+	<target name="--javadoc-init">
+		<mkdir dir="core/target/docs/api" />
+	</target>
+
+	<target name="--javadoc">
+		<javadoc sourcepath="core/src/main/java" destdir="core/target/docs/api" packagenames="com.thoughtworks.*" breakiterator="yes" failonerror="true" classpathref="compile.out" />
+	</target>
+
+	<target name="--release-init">
+		<mkdir dir="target/dist" />
+	</target>
+
+	<target name="--release">
+		<jar destfile="target/dist/${ant.project.name}-${version.number}.jar">
+			<fileset dir="core/target/classes/main" />
+		</jar>
+	</target>
+
+	<target name="--release-docs">
+		<zip destfile="target/dist/${ant.project.name}-docs-${version.number}.zip">
+			<fileset dir="core/target/docs" />
+		</zip>
+	</target>
+
+	<target name="--release-src">
+		<zip destfile="target/dist/${ant.project.name}-src-${version.number}.zip">
+			<fileset dir="." excludes=".git/**,.ide/**,.idea/workspace.xml,core/target/**,target/**" />
+		</zip>
+	</target>
+
+	<target name="--test-init">
+		<mkdir dir="core/target/classes/test" />
+		<mkdir dir="core/target/test/results" />
+		<mkdir dir="core/target/test/reports" />
+	</target>
+
+	<target name="--test-compile">
+		<javac srcdir="core/test/unit/java" destdir="core/target/classes/test" classpathref="test.compile.path" source="1.5" target="1.5" />
+	</target>
+
+	<target name="--test">
+		<junit haltonfailure="no" fork="yes" forkmode="once" printsummary="no">
+			<classpath refid="test.run.path" />
+
+			<formatter type="brief" usefile="yes" />
+			<formatter type="brief" usefile="no" />
+			<formatter type="xml" usefile="yes" />
+
+			<batchtest fork="yes" todir="core/target/test/results">
+				<fileset dir="core/test/unit/java">
+					<include name="**/*Test*.java" />
+				</fileset>
+			</batchtest>
+		</junit>
+	</target>
+
+	<target name="--test-report">
+		<junitreport todir="core/target/test/reports">
+			<fileset dir="core/target/test/results">
+				<include name="TEST-*.xml" />
+			</fileset>
+			<report format="frames" todir="core/target/test/reports/html" />
+		</junitreport>
+	</target>
+</project>

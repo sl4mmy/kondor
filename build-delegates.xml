@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<project>
+	<description>
+		Common target dependencies shared across all submodules.
+	</description>
+
+	<import file="build-targets.xml" />
+
+	<target name="-bump-major" depends="--bump-major,--zero-minor,--zero" />
+	<target name="-bump-minor" depends="--bump-minor,--zero" />
+
+	<target name="-clean" depends="--clean" />
+
+	<target name="-compile" depends="--compile-init,--compile" />
+
+	<target name="-dev" depends="-compile,--test-init,--test-compile,--test,--test-report" />
+
+	<target name="-javadoc" depends="--javadoc-init,--javadoc" />
+
+	<target name="-release" depends="-dev,-javadoc,--release-init,--release,--release-docs,--release-src,--bump" />
+</project>

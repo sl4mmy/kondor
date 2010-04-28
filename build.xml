@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<project name="kondor" default="dev">
+	<description>
+		Kondor - a generic implementation of the Condorcet voting method.
+	</description>
+
+	<import file="build-properties.xml" />
+	<import file="build-paths.xml" />
+	<import file="build-delegates.xml" />
+
+	<target name="bump-major" depends="-bump-major" description="--> Bumps major version number" />
+	<target name="bump-minor" depends="-bump-minor" description="--> Bumps minor version number" />
+
+	<target name="clean" depends="-clean" description="--> Cleans all build artifacts and temporary files" />
+
+	<target name="dev" depends="-dev" description="--> Compiles all source, then runs all tests" />
+
+	<target name="release" depends="-release" description="--> Compiles, tests, and packages a binary file for distribution" />
+</project>
