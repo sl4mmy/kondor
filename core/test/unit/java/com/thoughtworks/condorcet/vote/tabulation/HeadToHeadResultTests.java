@@ -33,7 +33,8 @@ public class HeadToHeadResultTests {
         public void shouldGetCandidate() throws Exception {
                 final Candidate candidate = new IntegerCandidate();
                 final int score = 42;
-                final HeadToHeadResult pair = new HeadToHeadResult(candidate, score);
+                final HeadToHeadResult pair = new HeadToHeadResult(candidate,
+                    score);
                 assertEquals(candidate, pair.getCandidate());
         }
 
@@ -41,7 +42,8 @@ public class HeadToHeadResultTests {
         public void shouldGetScore() throws Exception {
                 final Candidate candidate = new IntegerCandidate();
                 final int score = 42;
-                final HeadToHeadResult pair = new HeadToHeadResult(candidate, score);
+                final HeadToHeadResult pair = new HeadToHeadResult(candidate,
+                    score);
                 assertEquals(score, pair.getScore());
         }
 
@@ -56,8 +58,10 @@ public class HeadToHeadResultTests {
                 final Candidate firstCandidate = new IntegerCandidate();
                 final Candidate secondCandidate = new IntegerCandidate();
                 final int score = 42;
-                final HeadToHeadResult firstPair = new HeadToHeadResult(firstCandidate, score);
-                final HeadToHeadResult secondPair = new HeadToHeadResult(secondCandidate, score);
+                final HeadToHeadResult firstPair = new HeadToHeadResult(
+                    firstCandidate, score);
+                final HeadToHeadResult secondPair = new HeadToHeadResult(
+                    secondCandidate, score);
                 assertEquals(0, firstPair.compareTo(secondPair));
         }
 
@@ -67,8 +71,10 @@ public class HeadToHeadResultTests {
                 final Candidate secondCandidate = new IntegerCandidate();
                 final int firstScore = 0;
                 final int secondScore = 42;
-                final HeadToHeadResult firstPair = new HeadToHeadResult(firstCandidate, firstScore);
-                final HeadToHeadResult secondPair = new HeadToHeadResult(secondCandidate, secondScore);
+                final HeadToHeadResult firstPair = new HeadToHeadResult(
+                    firstCandidate, firstScore);
+                final HeadToHeadResult secondPair = new HeadToHeadResult(
+                    secondCandidate, secondScore);
                 assertEquals(true, firstPair.compareTo(secondPair) < 0);
         }
 
@@ -78,8 +84,10 @@ public class HeadToHeadResultTests {
                 final Candidate secondCandidate = new IntegerCandidate();
                 final int firstScore = 42;
                 final int secondScore = 0;
-                final HeadToHeadResult firstPair = new HeadToHeadResult(firstCandidate, firstScore);
-                final HeadToHeadResult secondPair = new HeadToHeadResult(secondCandidate, secondScore);
+                final HeadToHeadResult firstPair = new HeadToHeadResult(
+                    firstCandidate, firstScore);
+                final HeadToHeadResult secondPair = new HeadToHeadResult(
+                    secondCandidate, secondScore);
                 assertEquals(true, firstPair.compareTo(secondPair) > 0);
         }
 

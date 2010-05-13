@@ -31,7 +31,8 @@ public class ElectionResultsTests {
 
         @Test
         public void shouldNeverReturnNull() {
-                final Candidate[] winners = new ElectionResults((Candidate[]) null).rank();
+                final Candidate[] winners = new ElectionResults(
+                    (Candidate[]) null).rank();
                 assertEquals(0, winners.length);
         }
 
@@ -50,7 +51,9 @@ public class ElectionResultsTests {
         public void shouldRankCandidatesIdenticalToSingleResult() {
                 final Candidate firstCandidate = new IntegerCandidate();
                 final Candidate secondCandidate = new IntegerCandidate();
-                final Candidate[] candidates = new Candidate[] { firstCandidate, secondCandidate };
+                final Candidate[] candidates = new Candidate[] {
+                    firstCandidate, secondCandidate
+                };
                 final ElectionResults matrix = new ElectionResults(candidates);
                 matrix.addResult(firstCandidate, secondCandidate);
                 final Object[] winners = matrix.rank();

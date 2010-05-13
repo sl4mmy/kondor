@@ -21,11 +21,13 @@ import java.util.List;
 import java.util.Set;
 
 /**
- * Represents an algorithm, interest group, stakeholder, etc. Something or someone whose opinion matters.
+ * Represents an algorithm, interest group, stakeholder, etc. Something or
+ * someone whose opinion matters.
  */
 public interface Voter {
 
         List<Candidate> vote(Set<Candidate> candidates);
 
-        void inform(List<Candidate> changedArtifacts, List<Candidate> artifacts);
+        void inform(List<Candidate> changedArtifacts,
+            List<Candidate> artifacts);
 }

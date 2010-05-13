@@ -25,7 +25,8 @@ import java.util.Collections;
 import java.util.List;
 
 /**
- * Understands how to track the results of comparing each candidate to every other candidate.
+ * Understands how to track the results of comparing each candidate to every
+ * other candidate.
  */
 public class ElectionResults {
 
@@ -51,14 +52,17 @@ public class ElectionResults {
         public void addResult(final Object winner, final Object loser) {
                 final int indexOfWinner = this.candidates.indexOf(winner);
                 if (loser != null) {
-                        increment(indexOfWinner, this.candidates.indexOf(loser));
+                        increment(indexOfWinner, this.candidates.indexOf(
+                            loser));
                 } else {
                         increment(indexOfWinner, indexOfWinner);
                 }
         }
 
         public Candidate[] rank() {
-                final List<HeadToHeadResult> results = new ElectionResultsScorer(this.candidates, this.matrix).score();
+                final List<HeadToHeadResult> results
+                    = new ElectionResultsScorer(this.candidates, this.matrix)
+                    .score();
                 Collections.sort(results);
                 Collections.reverse(results);
                 final Candidate[] winners = new Candidate[results.size()];
@@ -69,7 +73,8 @@ public class ElectionResults {
                 return winners;
         }
 
-        private void increment(final int indexOfWinner, final int indexOfLoser) {
+        private void increment(final int indexOfWinner,
+            final int indexOfLoser) {
                 this.matrix[indexOfWinner][indexOfLoser] += 1;
         }
 }

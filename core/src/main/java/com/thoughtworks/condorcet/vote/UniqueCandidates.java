@@ -23,7 +23,7 @@ import java.util.Set;
 /**
  * Understands the set of candidates that appear on at least one ballot.
  */
-class UniqueCandidates<T> {
+class UniqueCandidates {
 
         private final Candidate[][] ballots;
 
@@ -36,7 +36,8 @@ class UniqueCandidates<T> {
                         return new Candidate[0];
                 }
 
-                final Set<Candidate> candidates = new LinkedHashSet<Candidate>();
+                final Set<Candidate> candidates
+                    = new LinkedHashSet<Candidate>();
                 for (final Candidate[] ballot : this.ballots) {
                         for (final Candidate candidate : ballot) {
                                 candidates.add(candidate);

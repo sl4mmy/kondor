@@ -46,9 +46,14 @@ public class UniqueCandidatesTests {
         public void shouldGetAllCandidatesOnAllBallots() throws Exception {
                 final Candidate firstCandidate = new IntegerCandidate();
                 final Candidate secondCandidate = new IntegerCandidate();
-                final Candidate[] firstBallot = new Candidate[] { firstCandidate };
-                final Candidate[] secondBallot = new Candidate[] { secondCandidate };
-                final Candidate[] candidates = get(new Candidate[][] { firstBallot, secondBallot });
+                final Candidate[] firstBallot = new Candidate[] {
+                    firstCandidate
+                };
+                final Candidate[] secondBallot = new Candidate[] {
+                    secondCandidate
+                };
+                final Candidate[] candidates = get(
+                    new Candidate[][] { firstBallot, secondBallot });
                 assertEquals(firstCandidate, candidates[0]);
                 assertEquals(secondCandidate, candidates[1]);
                 assertEquals(2, candidates.length);
@@ -58,9 +63,14 @@ public class UniqueCandidatesTests {
         public void shouldAllowBallotsToOmitCandidates() throws Exception {
                 final Candidate firstCandidate = new IntegerCandidate();
                 final Candidate secondCandidate = new IntegerCandidate();
-                final Candidate[] firstBallot = new Candidate[] { firstCandidate };
-                final Candidate[] secondBallot = new Candidate[] { firstCandidate, secondCandidate };
-                final Candidate[] candidates = get(new Candidate[][] { firstBallot, secondBallot });
+                final Candidate[] firstBallot = new Candidate[] {
+                    firstCandidate
+                };
+                final Candidate[] secondBallot = new Candidate[] {
+                    firstCandidate, secondCandidate
+                };
+                final Candidate[] candidates = get(
+                    new Candidate[][] { firstBallot, secondBallot });
                 assertEquals(firstCandidate, candidates[0]);
                 assertEquals(secondCandidate, candidates[1]);
                 assertEquals(2, candidates.length);

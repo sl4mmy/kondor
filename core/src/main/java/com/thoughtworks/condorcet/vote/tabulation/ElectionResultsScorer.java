@@ -23,7 +23,8 @@ import java.util.LinkedList;
 import java.util.List;
 
 /**
- * Understands how to calculate the strength of each candidate when compared to every other.
+ * Understands how to calculate the strength of each candidate when compared to
+ * every other.
  */
 public class ElectionResultsScorer {
 
@@ -31,7 +32,8 @@ public class ElectionResultsScorer {
 
         private final int[][] matrix;
 
-        public ElectionResultsScorer(final List<Candidate> candidates, final int[][] matrix) {
+        public ElectionResultsScorer(final List<Candidate> candidates,
+            final int[][] matrix) {
                 this.candidates = candidates;
                 this.matrix = matrix;
         }
@@ -41,14 +43,16 @@ public class ElectionResultsScorer {
                         return new LinkedList<HeadToHeadResult>();
                 }
 
-                final List<HeadToHeadResult> results = new LinkedList<HeadToHeadResult>();
+                final List<HeadToHeadResult> results
+                    = new LinkedList<HeadToHeadResult>();
                 for (final Candidate candidate : this.candidates) {
-                        results.add(new HeadToHeadResult(candidate, score(candidate)));
+                        results.add(new HeadToHeadResult(candidate, score(
+                            candidate)));
                 }
                 return results;
         }
 
-        private int score(Object candidate) {
+        private int score(final Object candidate) {
                 final int indexOfCandidate = this.candidates.indexOf(candidate);
                 int score = 0;
                 for (final int votesFor : this.matrix[indexOfCandidate]) {

@@ -43,7 +43,8 @@ public class CondorcetMethodTests {
         }
 
         @Test
-        public void shouldRankCandidatesInTheSameOrderIfThereIsOnlyASingleBallot() throws Exception {
+        public void shouldRankCandidatesInTheSameOrderIfThereIsOnlyASingleBallot()
+            throws Exception {
                 final Candidate firstPlace = new IntegerCandidate();
                 final Candidate secondPlace = new IntegerCandidate();
                 final Candidate[] winners = rank(firstPlace, secondPlace);
@@ -53,20 +54,26 @@ public class CondorcetMethodTests {
         }
 
         @Test
-        public void shouldRankOnlyCandidateAcrossMultipleIdenticalBallotsAsWinner() throws Exception {
+        public void shouldRankOnlyCandidateAcrossMultipleIdenticalBallotsAsWinner()
+            throws Exception {
                 final Candidate winner = new IntegerCandidate();
                 final Candidate[] ballot = new Candidate[] { winner };
-                final Candidate[] winners = rank(new Candidate[][] { ballot, ballot });
+                final Candidate[] winners = rank(
+                    new Candidate[][] { ballot, ballot });
                 assertEquals(winner, winners[0]);
                 assertEquals(1, winners.length);
         }
 
         @Test
-        public void shouldRankCandidatesInTheSameOrderIfEveryBallotIsIdentical() throws Exception {
+        public void shouldRankCandidatesInTheSameOrderIfEveryBallotIsIdentical()
+            throws Exception {
                 final Candidate firstPlace = new IntegerCandidate();
                 final Candidate secondPlace = new IntegerCandidate();
-                final Candidate[] ballot = new Candidate[] { firstPlace, secondPlace };
-                final Candidate[] winners = rank(new Candidate[][] { ballot, ballot });
+                final Candidate[] ballot = new Candidate[] {
+                    firstPlace, secondPlace
+                };
+                final Candidate[] winners = rank(
+                    new Candidate[][] { ballot, ballot });
                 assertEquals(firstPlace, winners[0]);
                 assertEquals(secondPlace, winners[1]);
                 assertEquals(2, winners.length);
@@ -77,33 +84,48 @@ public class CondorcetMethodTests {
                 final Candidate firstPlace = new IntegerCandidate();
                 final Candidate secondPlace = new IntegerCandidate();
                 final Candidate[] firstBallot = new Candidate[] { firstPlace };
-                final Candidate[] secondBallot = new Candidate[] { firstPlace, secondPlace };
-                final Candidate[] winners = rank(new Candidate[][] { firstBallot, secondBallot });
+                final Candidate[] secondBallot = new Candidate[] {
+                    firstPlace, secondPlace
+                };
+                final Candidate[] winners = rank(
+                    new Candidate[][] { firstBallot, secondBallot });
                 assertEquals(firstPlace, winners[0]);
                 assertEquals(secondPlace, winners[1]);
                 assertEquals(2, winners.length);
         }
 
         @Test
-        public void shouldRankCandidatesAccordingToPreferenceOfAllVoters() throws Exception {
+        public void shouldRankCandidatesAccordingToPreferenceOfAllVoters()
+            throws Exception {
                 final Candidate firstPlace = new IntegerCandidate();
                 final Candidate secondPlace = new IntegerCandidate();
-                final Candidate[] firstBallot = new Candidate[] { secondPlace, firstPlace };
-                final Candidate[] secondBallot = new Candidate[] { firstPlace, secondPlace };
-                final Candidate[] thirdBallot = new Candidate[] { firstPlace, secondPlace };
-                final Candidate[] winners = rank(new Candidate[][] { firstBallot, secondBallot, thirdBallot });
+                final Candidate[] firstBallot = new Candidate[] {
+                    secondPlace, firstPlace
+                };
+                final Candidate[] secondBallot = new Candidate[] {
+                    firstPlace, secondPlace
+                };
+                final Candidate[] thirdBallot = new Candidate[] {
+                    firstPlace, secondPlace
+                };
+                final Candidate[] winners = rank(new Candidate[][] {
+                    firstBallot, secondBallot, thirdBallot
+                });
                 assertEquals(firstPlace, winners[0]);
                 assertEquals(secondPlace, winners[1]);
         }
 
         @Test
-        public void shouldRankCandidatesDespiteBallotsWithMissingCandidates() throws Exception {
+        public void shouldRankCandidatesDespiteBallotsWithMissingCandidates()
+            throws Exception {
                 final Candidate firstPlace = new IntegerCandidate();
                 final Candidate secondPlace = new IntegerCandidate();
                 final Candidate[] firstBallot = new Candidate[] { secondPlace };
                 final Candidate[] secondBallot = new Candidate[] { firstPlace };
                 final Candidate[] thirdBallot = new Candidate[] { firstPlace };
-                final Candidate[] winners = rank(new Candidate[][] { firstBallot, secondBallot, thirdBallot });
+                final Candidate[] winners = rank(new Candidate[][] {
+                    firstBallot, secondBallot, thirdBallot
+                });
                 assertEquals(firstPlace, winners[0]);
                 assertEquals(secondPlace, winners[1]);
         }

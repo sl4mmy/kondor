@@ -35,17 +35,20 @@ public class ElectionResultsScorerTests {
         @Test
         public void shouldNeverReturnNull() throws Exception {
                 final List<HeadToHeadResult> winners =
-                    new ElectionResultsScorer((List<Candidate>) null, (int[][]) null).score();
+                    new ElectionResultsScorer((List<Candidate>) null,
+                        (int[][]) null).score();
                 assertEquals(0, winners.size());
         }
 
         @Test
-        public void shouldReturnSingleWinnerWithSingleVoteCount() throws Exception {
+        public void shouldReturnSingleWinnerWithSingleVoteCount()
+            throws Exception {
                 final Candidate candidate = new IntegerCandidate();
                 final List<Candidate> candidates = new ArrayList<Candidate>();
                 candidates.add(candidate);
                 final int[][] votes = new int[][] { { 42 } };
-                final List<HeadToHeadResult> winners = new ElectionResultsScorer(candidates, votes).score();
+                final List<HeadToHeadResult> winners
+                    = new ElectionResultsScorer(candidates, votes).score();
                 assertEquals(candidate, winners.get(0).getCandidate());
                 assertEquals(42, winners.get(0).getScore());
         }
@@ -56,7 +59,8 @@ public class ElectionResultsScorerTests {
                 final List<Candidate> candidates = new ArrayList<Candidate>();
                 candidates.add(candidate);
                 final int[][] votes = new int[][] { { 42, 42 } };
-                final List<HeadToHeadResult> winners = new ElectionResultsScorer(candidates, votes).score();
+                final List<HeadToHeadResult> winners
+                    = new ElectionResultsScorer(candidates, votes).score();
                 assertEquals(candidate, winners.get(0).getCandidate());
                 assertEquals(84, winners.get(0).getScore());
         }
@@ -67,8 +71,11 @@ public class ElectionResultsScorerTests {
                 for (int i = 0; i < 3; i++) {
                         candidates.add(new IntegerCandidate());
                 }
-                final int[][] votes = new int[][] { { 1, 2, 3 }, { 4, 5, 6 }, { 7, 8, 9 } };
-                final List<HeadToHeadResult> winners = new ElectionResultsScorer(candidates, votes).score();
+                final int[][] votes = new int[][] {
+                    { 1, 2, 3 }, { 4, 5, 6 }, { 7, 8, 9 }
+                };
+                final List<HeadToHeadResult> winners
+                    = new ElectionResultsScorer(candidates, votes).score();
                 assertEquals(3, winners.size());
                 assertEquals(6, winners.get(0).getScore());
                 assertEquals(15, winners.get(1).getScore());

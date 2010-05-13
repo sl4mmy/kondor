@@ -24,7 +24,8 @@ import java.util.List;
 import java.util.Set;
 
 /**
- * Understands how to rank candidates in an election when compared to each other one at a time.
+ * Understands how to rank candidates in an election when compared to each other
+ * one at a time.
  *
  * @see http://en.wikipedia.org/wiki/Condorcet_method
  */
@@ -38,14 +39,14 @@ public class CondorcetMethod {
                 this.ballots = ballots;
         }
 
-        public CondorcetMethod(Set<Voter> voters) {
+        public CondorcetMethod(final Set<Voter> voters) {
                 this.voters = voters;
         }
 
         public CondorcetMethod() {
         }
 
-        public List<Candidate> elect(Set<Candidate> candidates) {
+        public List<Candidate> elect(final Set<Candidate> candidates) {
                 final List<Candidate> rankedList = new ArrayList<Candidate>();
                 if (this.voters == null) {
                         return rankedList;
@@ -57,7 +58,8 @@ public class CondorcetMethod {
                 for (Voter voter : voters) {
                         final List<Candidate> ballot = voter.vote(candidates);
                         if (ballot != null) {
-                                this.ballots[i++] = ballot.toArray(new Candidate[ballot.size()]);
+                                this.ballots[i++] = ballot.toArray(
+                                    new Candidate[ballot.size()]);
                         } else {
                                 this.ballots[i++] = new Candidate[0];
                         }
@@ -97,7 +99,7 @@ public class CondorcetMethod {
                 return new UniqueCandidates(this.ballots).get();
         }
 
-        public void setVoters(Set<Voter> voters) {
+        public void setVoters(final Set<Voter> voters) {
                 this.voters = voters;
         }
 }

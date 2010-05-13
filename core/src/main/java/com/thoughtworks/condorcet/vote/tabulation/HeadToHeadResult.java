@@ -20,7 +20,8 @@ package com.thoughtworks.condorcet.vote.tabulation;
 import com.thoughtworks.condorcet.vote.Candidate;
 
 /**
- * Understands the number of pairwise contests won by a candidate against every other candidate in an election.
+ * Understands the number of pairwise contests won by a candidate against every
+ * other candidate in an election.
  */
 public class HeadToHeadResult implements Comparable<HeadToHeadResult> {
 

@@ -23,7 +23,12 @@ under the License.
     "http://www.puppycrawl.com/dtds/suppressions_1_1.dtd">
 
 <suppressions>
-        <!--<suppress checks="MethodLength"-->
-        <!--files="Configuration.java"-->
-        <!--lines="34-45"/>-->
+        <suppress checks="MethodLength" files="CondorcetMethod.java"
+            lines="49-75, 77-96" />
+        <suppress checks="MethodLength" files="UniqueCandidates.java"
+            lines="34-47" />
+        <suppress checks="MethodLength" files="ElectionResults.java"
+            lines="62-74" />
+        <suppress checks="MethodLength" files="ElectionResultsScorer.java"
+            lines="41-53" />
 </suppressions>
