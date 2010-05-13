@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<project>
+	<description>
+		Common dependencies shared across all submodules.
+	</description>
+
+	<!-- Paths to build output directories for each module -->
+	<path id="core.module">
+		<pathelement location="${project.root}/core/target/main/classes"/>
+	</path>
+
+	<!-- Paths to build artifacts for each module -->
+	<fileset id="core.module.lib" file="${project.root}/core/target/dist/${ant.project.name}-core-${version.number}.jar"/>
+
+	<!-- Paths 3rd party libraries -->
+	<fileset id="apache-log4j.lib" file="${libs}/apache-log4j/v1.2.16/log4j-1.2.16.jar"/>
+	<fileset id="ant-contrib.lib" file="${libs}/ant-contrib/v1.0b3/ant-contrib-1.0b3.jar"/>
+	<fileset id="antlr.lib" file="${libs}/antlr/v3.2/antlr-3.2.jar"/>
+	<fileset id="asm.lib" file="${libs}/asm/v3.2/asm-3.2.jar"/>
+	<fileset id="asm-tree.lib" file="${libs}/asm/v3.2/asm-tree-3.2.jar"/>
+	<fileset id="checkstyle.lib" file="${libs}/checkstyle/v5.1/checkstyle-5.1.jar"/>
+	<fileset id="cobertura.lib" file="${libs}/cobertura/v1.9.4.1/cobertura.jar"/>
+	<fileset id="commons-beanutils.lib" file="${libs}/commons-beanutils/v1.8.3/commons-beanutils-1.8.3.jar"/>
+	<fileset id="commons-logging.lib" file="${libs}/commons-logging/v1.1.1/commons-logging-1.1.1.jar"/>
+	<fileset id="findbugs.lib" file="${libs}/findbugs/v1.3.9/lib/findbugs.jar"/>
+	<fileset id="findbugs-ant.lib" file="${libs}/findbugs/v1.3.9/lib/findbugs-ant.jar"/>
+	<fileset id="google-collections.lib" file="${libs}/google-collect/v1.0/google-collect-1.0.jar"/>
+	<fileset id="jakarta-bcel.lib" file="${libs}/jakarta-bcel/v5.2/bcel-5.2.jar"/>
+	<fileset id="jakarta-oro.lib" file="${libs}/jakarta-oro/v2.0.8/jakarta-oro-2.0.8.jar"/>
+	<fileset id="jaxen.lib" file="${libs}/jaxen/v1.1.2/jaxen-1.1.2.jar"/>
+	<fileset id="junit.lib" file="${libs}/junit/v4.8.2/junit-4.8.2.jar"/>
+	<fileset id="pmd.lib" file="${libs}/pmd/v4.2.5/pmd-4.2.5.jar"/>
+</project>

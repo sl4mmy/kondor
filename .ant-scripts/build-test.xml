@@ -1,0 +1,64 @@
+<?xml version="1.0"?>
+<project>
+	<description>
+		Common test targets shared across all submodules.
+	</description>
+
+	<target name="--test-unit-init">
+		<available property="should.test.unit" file="test/unit/java"/>
+		<available property="should.test.unit.copy.resources" file="test/unit/resources"/>
+		<mkdir dir="target/test/unit/classes"/>
+		<mkdir dir="target/test/unit/results"/>
+		<mkdir dir="target/test/reports/unit"/>
+	</target>
+
+	<target name="--test-unit-compile" if="should.test.unit">
+		<javac srcdir="test/unit/java" destdir="target/test/unit/classes" classpathref="test.unit.compile.path" debug="on" target="${javac.target}"/>
+	</target>
+
+	<target name="--test-unit-copy-resources" if="should.test.unit.copy.resources">
+		<copy todir="target/test/unit/classes">
+			<fileset dir="test/unit/resources" excludes="**/.DS_Store"/>
+		</copy>
+	</target>
+
+	<target name="--test-unit-coverage-init" if="should.test.unit">
+		<delete file="target/test/unit/cobertura.ser"/>
+		<delete dir="target/test/unit/instrumented" quiet="true"/>
+
+		<cobertura-instrument datafile="target/test/unit/cobertura.ser" todir="target/test/unit/instrumented">
+			<fileset dir="target/main/classes" includes="**/*.class"/>
+		</cobertura-instrument>
+	</target>
+
+	<target name="--test-unit" if="should.test.unit">
+		<junit haltonfailure="yes" fork="yes" forkmode="once" maxmemory="${heapsize.max}" printsummary="no">
+			<classpath location="target/test/unit/instrumented"/>
+			<classpath refid="test.unit.run.path"/>
+			<classpath refid="cobertura.classpath"/>
+
+			<sysproperty key="net.sourceforge.cobertura.datafile" file="target/test/unit/cobertura.ser"/>
+
+			<formatter type="brief" usefile="no"/>
+			<formatter type="xml" usefile="yes"/>
+
+			<batchtest fork="yes" todir="target/test/unit/results">
+				<fileset dir="test/unit/java" includes="**/*Test.java,**/*Tests.java"/>
+			</batchtest>
+		</junit>
+	</target>
+
+	<target name="--test-unit-report" if="should.test.unit">
+		<junitreport todir="target/test/reports/unit">
+			<fileset dir="target/test/unit/results">
+				<include name="TEST-*.xml"/>
+			</fileset>
+			<report format="frames" todir="target/test/reports/unit/html"/>
+		</junitreport>
+	</target>
+
+	<target name="--test-unit-coverage-report" if="should.test.unit">
+		<cobertura-report format="html" datafile="target/test/unit/cobertura.ser" destdir="target/test/reports/unit/coverage" srcdir="src/main/java"/>
+		<fileset dir="src/main/java" includes="**/*.java"/>
+	</target>
+</project>

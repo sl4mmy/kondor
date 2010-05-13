@@ -1,0 +1,6 @@
+Kondor
+Copyright (c) 2009, 2010, Kent R. Spillner <kspillner@acm.org>
+Copyright (c) 2007, ThoughtWorks, Inc.
+
+This product includes software developed at
+The Apache Software Foundation (http://www.apache.org/).

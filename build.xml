@@ -4,16 +4,22 @@
 		Kondor - a generic implementation of the Condorcet voting method.
 	</description>
 
-	<import file=".ant-scripts/build-properties.xml" />
-	<import file=".ant-scripts/build-paths.xml" />
-	<import file=".ant-scripts/build-delegates.xml" />
+	<property name="project.root" location="${basedir}"/>
 
-	<target name="bump-major" depends="-bump-major" description="--> Bumps major version number" />
-	<target name="bump-minor" depends="-bump-minor" description="--> Bumps minor version number" />
+	<!-- Add each subproject's build file here, in order of dependencies (dependent subprojects after their dependencies)-->
+	<filelist id="subprojects" dir="${project.root}" files="core/build.xml"/>
 
-	<target name="clean" depends="-clean" description="--> Cleans all build artifacts and temporary files" />
+	<import file="${project.root}/.ant-scripts/build-properties.xml"/>
+	<import file="${ant.scripts}/build-dependencies.xml"/>
+	<import file="${ant.scripts}/build-delegates.xml"/>
 
-	<target name="dev" depends="-dev" description="--> Compiles all source, then runs all tests" />
+	<target name="bump-major" depends="-bump-major" description="--> Bumps major version number"/>
+	<target name="bump-minor" depends="-bump-minor" description="--> Bumps minor version number"/>
 
-	<target name="release" depends="-release" description="--> Compiles, tests, and packages a binary file for distribution" />
+	<target name="clean" depends="-clean-all" description="--> Cleans all subprojects"/>
+
+	<target name="dev" depends="-dev-all" description="--> Compiles and tests all subprojects"/>
+
+	<target name="release" depends="-release" description="--> Packages all subprojects and creates a complete binary distribution"/>
+	<target name="reports" depends="-reports" description="--> Generates code quality reports"/>
 </project>
