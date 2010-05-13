@@ -21,11 +21,14 @@
     <option name="LOCALE" />
     <option name="OPEN_IN_BROWSER" value="true" />
   </component>
+  <component name="ProjectDetails">
+    <option name="projectName" value="kondor" />
+  </component>
   <component name="ProjectKey">
     <option name="state" value="project://default" />
   </component>
   <component name="ProjectRootManager" version="2" languageLevel="JDK_1_5" assert-keyword="true" jdk-15="true" project-jdk-name="1.6" project-jdk-type="JavaSDK">
-    <output url="file://$PROJECT_DIR$/.ide" />
+    <output url="file://$PROJECT_DIR$/.idea/out" />
   </component>
   <component name="SvnBranchConfigurationManager">
     <option name="mySupportsUserInfoFilter" value="true" />
