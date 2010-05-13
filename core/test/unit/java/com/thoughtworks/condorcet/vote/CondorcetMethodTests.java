@@ -18,12 +18,14 @@
 package com.thoughtworks.condorcet.vote;
 
 import junit.framework.JUnit4TestAdapter;
-import static org.junit.Assert.assertEquals;
 import org.junit.Test;
+
+import static org.junit.Assert.assertEquals;
 
 public class CondorcetMethodTests {
 
         private static class IntegerCandidate implements Candidate {
+
         }
 
         @Test

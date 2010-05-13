@@ -17,18 +17,19 @@
 
 package com.thoughtworks.condorcet.vote.tabulation;
 
+import com.thoughtworks.condorcet.vote.Candidate;
 import junit.framework.JUnit4TestAdapter;
-import static org.junit.Assert.assertEquals;
 import org.junit.Test;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import com.thoughtworks.condorcet.vote.Candidate;
+import static org.junit.Assert.assertEquals;
 
 public class ElectionResultsScorerTests {
 
         private static class IntegerCandidate implements Candidate {
+
         }
 
         @Test

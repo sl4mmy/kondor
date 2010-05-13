@@ -23,108 +23,108 @@ under the License.
     "http://www.puppycrawl.com/dtds/configuration_1_2.dtd">
 
 <module name="Checker">
-        <module name="SuppressionCommentFilter"/>
+        <module name="SuppressionCommentFilter" />
         <module name="SuppressionFilter">
                 <property name="file"
-                          value="checkstyle-suppressions.xml"/>
+                    value="checkstyle-suppressions.xml" />
         </module>
 
         <module name="NewlineAtEndOfFile">
-                <property name="lineSeparator" value="lf"/>
+                <property name="lineSeparator" value="lf" />
         </module>
 
-        <module name="Translation"/>
+        <module name="Translation" />
 
         <module name="RegexpHeader">
                 <property name="header"
-                          value="^/*\n * Copyright \(c\) 2009( - \d\d\d\d)?, Kent R. Spillner.\n *\n * Permission to use, copy, modify, and/or distribute this software for any\n * purpose with or without fee is hereby granted, provided that the above\n * copyright notice and this permission notice appear in all copies\n *\n * THE SOFTWARE IS PROVIDED &quot;AS IS&quot; AND THE AUTHOR DISCLAIMS ALL WARRANTIES\n * WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF\n * MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR\n * ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES\n * WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN\n * ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF\n * OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.\n */$"/>
+                    value="^/*\n * Copyright \(c\) 2009( - \d\d\d\d)?, Kent R. Spillner.\n *\n * Permission to use, copy, modify, and/or distribute this software for any\n * purpose with or without fee is hereby granted, provided that the above\n * copyright notice and this permission notice appear in all copies\n *\n * THE SOFTWARE IS PROVIDED &quot;AS IS&quot; AND THE AUTHOR DISCLAIMS ALL WARRANTIES\n * WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF\n * MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR\n * ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES\n * WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN\n * ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF\n * OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.\n */$" />
         </module>
 
-        <module name="FileLength"/>
+        <module name="FileLength" />
 
         <module name="TreeWalker">
                 <property name="cacheFile"
-                          value="${checkstyle.cache.file}"/>
-                <property name="tabWidth" value="8"/>
+                    value="${checkstyle.cache.file}" />
+                <property name="tabWidth" value="8" />
 
-                <module name="FileContentsHolder"/>
+                <module name="FileContentsHolder" />
 
-                <module name="JavadocType"/>
-                <module name="JavadocStyle"/>
+                <module name="JavadocType" />
+                <module name="JavadocStyle" />
 
-                <module name="ConstantName"/>
-                <module name="LocalFinalVariableName"/>
-                <module name="LocalVariableName"/>
-                <module name="MemberName"/>
-                <module name="MethodName"/>
-                <module name="PackageName"/>
-                <module name="ParameterName"/>
-                <module name="StaticVariableName"/>
-                <module name="TypeName"/>
+                <module name="ConstantName" />
+                <module name="LocalFinalVariableName" />
+                <module name="LocalVariableName" />
+                <module name="MemberName" />
+                <module name="MethodName" />
+                <module name="PackageName" />
+                <module name="ParameterName" />
+                <module name="StaticVariableName" />
+                <module name="TypeName" />
 
-                <module name="AvoidStarImport"/>
-                <module name="IllegalImport"/>
-                <module name="RedundantImport"/>
-                <module name="UnusedImports"/>
+                <module name="AvoidStarImport" />
+                <module name="IllegalImport" />
+                <module name="RedundantImport" />
+                <module name="UnusedImports" />
 
                 <module name="LineLength">
-                        <property name="max" value="80"/>
+                        <property name="max" value="80" />
                 </module>
                 <module name="MethodLength">
-                        <property name="max" value="10"/>
+                        <property name="max" value="10" />
                 </module>
-                <module name="ParameterNumber"/>
+                <module name="ParameterNumber" />
 
-                <module name="EmptyForIteratorPad"/>
-                <module name="MethodParamPad"/>
-                <module name="NoWhitespaceAfter"/>
-                <module name="NoWhitespaceBefore"/>
-                <module name="OperatorWrap"/>
-                <module name="ParenPad"/>
-                <module name="TypecastParenPad"/>
-                <module name="WhitespaceAfter"/>
+                <module name="EmptyForIteratorPad" />
+                <module name="MethodParamPad" />
+                <module name="NoWhitespaceAfter" />
+                <module name="NoWhitespaceBefore" />
+                <module name="OperatorWrap" />
+                <module name="ParenPad" />
+                <module name="TypecastParenPad" />
+                <module name="WhitespaceAfter" />
                 <module name="WhitespaceAround">
                         <property name="allowEmptyConstructors"
-                                  value="true"/>
+                            value="true" />
                 </module>
 
-                <module name="ModifierOrder"/>
-                <module name="RedundantModifier"/>
+                <module name="ModifierOrder" />
+                <module name="RedundantModifier" />
 
-                <module name="AvoidNestedBlocks"/>
-                <module name="EmptyBlock"/>
-                <module name="LeftCurly"/>
-                <module name="NeedBraces"/>
-                <module name="RightCurly"/>
+                <module name="AvoidNestedBlocks" />
+                <module name="EmptyBlock" />
+                <module name="LeftCurly" />
+                <module name="NeedBraces" />
+                <module name="RightCurly" />
 
-                <module name="DoubleCheckedLocking"/>
-                <module name="EmptyStatement"/>
-                <module name="EqualsHashCode"/>
+                <module name="DoubleCheckedLocking" />
+                <module name="EmptyStatement" />
+                <module name="EqualsHashCode" />
                 <module name="HiddenField">
                         <property name="ignoreConstructorParameter"
-                                  value="true"/>
-                        <property name="ignoreSetter" value="true"/>
+                            value="true" />
+                        <property name="ignoreSetter" value="true" />
                 </module>
-                <module name="IllegalInstantiation"/>
-                <module name="InnerAssignment"/>
-                <module name="MagicNumber"/>
-                <module name="MissingSwitchDefault"/>
-                <module name="RedundantThrows"/>
-                <module name="SimplifyBooleanExpression"/>
-                <module name="SimplifyBooleanReturn"/>
+                <module name="IllegalInstantiation" />
+                <module name="InnerAssignment" />
+                <module name="MagicNumber" />
+                <module name="MissingSwitchDefault" />
+                <module name="RedundantThrows" />
+                <module name="SimplifyBooleanExpression" />
+                <module name="SimplifyBooleanReturn" />
 
-                <module name="FinalClass"/>
-                <module name="HideUtilityClassConstructor"/>
-                <module name="InterfaceIsType"/>
+                <module name="FinalClass" />
+                <module name="HideUtilityClassConstructor" />
+                <module name="InterfaceIsType" />
 
-                <module name="ArrayTypeStyle"/>
-                <module name="FinalParameters"/>
+                <module name="ArrayTypeStyle" />
+                <module name="FinalParameters" />
                 <module name="RegexpSinglelineJava">
-                        <property name="format" value="\s+$"/>
+                        <property name="format" value="\s+$" />
                         <property name="message"
-                                  value="Illegal whitespace at end of line."/>
+                            value="Illegal whitespace at end of line." />
                 </module>
-                <module name="TodoComment"/>
-                <module name="UpperEll"/>
+                <module name="TodoComment" />
+                <module name="UpperEll" />
         </module>
 </module>

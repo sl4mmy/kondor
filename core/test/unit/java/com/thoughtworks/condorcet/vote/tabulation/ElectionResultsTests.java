@@ -19,12 +19,14 @@ package com.thoughtworks.condorcet.vote.tabulation;
 
 import com.thoughtworks.condorcet.vote.Candidate;
 import junit.framework.JUnit4TestAdapter;
-import static org.junit.Assert.assertEquals;
 import org.junit.Test;
+
+import static org.junit.Assert.assertEquals;
 
 public class ElectionResultsTests {
 
         private static class IntegerCandidate implements Candidate {
+
         }
 
         @Test

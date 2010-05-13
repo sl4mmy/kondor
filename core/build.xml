@@ -1,18 +1,18 @@
 <?xml version="1.0"?>
 <project name="kondor-core" default="dev">
-	<description>
-		Core - core module.
-	</description>
+        <description>
+                Core - core module.
+        </description>
 
-	<property name="project.root" location="${basedir}/.."/>
+        <property name="project.root" location="${basedir}/.." />
 
-	<import file="${project.root}/.ant-scripts/build-properties.xml"/>
+        <import file="${project.root}/.ant-scripts/build-properties.xml" />
 
-	<import file="build-paths.xml"/>
+        <import file="build-paths.xml" />
 
-	<import file="${ant.scripts}/build-delegates.xml"/>
+        <import file="${ant.scripts}/build-delegates.xml" />
 
-	<target name="clean" depends="-clean" description="--> Cleans all build artifacts and temporary files"/>
-	<target name="dev" depends="-dev" description="--> Compiles all source code, runs all tests"/>
-	<target name="package" depends="-package" description="--> Compiles, tests, and creates package for release"/>
+        <target name="clean" depends="-clean" description="--> Cleans all build artifacts and temporary files" />
+        <target name="dev" depends="-dev" description="--> Compiles all source code, runs all tests" />
+        <target name="package" depends="-package" description="--> Compiles, tests, and creates package for release" />
 </project>

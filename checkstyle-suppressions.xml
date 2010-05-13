@@ -24,6 +24,6 @@ under the License.
 
 <suppressions>
         <!--<suppress checks="MethodLength"-->
-                  <!--files="Configuration.java"-->
-                  <!--lines="34-45"/>-->
+        <!--files="Configuration.java"-->
+        <!--lines="34-45"/>-->
 </suppressions>
