@@ -1,67 +1,79 @@
 <?xml version="1.0"?>
 <project>
-	<description>
-		Common reporting targets shared across all submodules.
-	</description>
+        <description>
+                Common reporting targets shared across all submodules.
+        </description>
 
-	<path id="cobertura.classpath">
-		<fileset refid="apache-log4j.lib"/>
-		<fileset refid="asm.lib"/>
-		<fileset refid="asm-tree.lib"/>
-		<fileset refid="cobertura.lib"/>
-		<fileset refid="jakarta-oro.lib"/>
-	</path>
+        <path id="cobertura.classpath">
+                <fileset refid="apache-log4j.lib" />
+                <fileset refid="asm.lib" />
+                <fileset refid="asm-tree.lib" />
+                <fileset refid="cobertura.lib" />
+                <fileset refid="jakarta-oro.lib" />
+        </path>
 
-	<path id="checkstyle.classpath">
-		<fileset refid="antlr.lib"/>
-		<fileset refid="checkstyle.lib"/>
-		<fileset refid="commons-beanutils.lib"/>
-		<fileset refid="commons-logging.lib"/>
-		<fileset refid="google-collections.lib"/>
-	</path>
+        <path id="checkstyle.classpath">
+                <fileset refid="antlr.lib" />
+                <fileset refid="checkstyle.lib" />
+                <fileset refid="commons-beanutils.lib" />
+                <fileset refid="commons-logging.lib" />
+                <fileset refid="google-collections.lib" />
+        </path>
 
-	<path id="pmd.classpath">
-		<fileset refid="asm.lib"/>
-		<fileset refid="jaxen.lib"/>
-		<fileset refid="pmd.lib"/>
-	</path>
+        <path id="pmd.classpath">
+                <fileset refid="asm.lib" />
+                <fileset refid="jaxen.lib" />
+                <fileset refid="pmd.lib" />
+        </path>
 
-	<path id="findbugs.classpath">
-		<fileset refid="findbugs.lib"/>
-		<fileset refid="findbugs-ant.lib"/>
-	</path>
+        <path id="findbugs.classpath">
+                <fileset refid="findbugs.lib" />
+                <fileset refid="findbugs-ant.lib" />
+        </path>
 
-	<taskdef classpathref="cobertura.classpath" resource="tasks.properties"/>
-	<taskdef classpathref="checkstyle.classpath" resource="checkstyletask.properties"/>
-	<taskdef classpathref="pmd.classpath" classname="net.sourceforge.pmd.ant.PMDTask" name="pmd"/>
-	<taskdef classpathref="pmd.classpath" classname="net.sourceforge.pmd.cpd.CPDTask" name="cpd"/>
-	<taskdef classpathref="findbugs.classpath" name="findbugs" classname="edu.umd.cs.findbugs.anttask.FindBugsTask"/>
+        <taskdef classpathref="cobertura.classpath"
+            resource="tasks.properties" />
+        <taskdef classpathref="checkstyle.classpath"
+            resource="checkstyletask.properties" />
+        <taskdef classpathref="pmd.classpath"
+            classname="net.sourceforge.pmd.ant.PMDTask" name="pmd" />
+        <taskdef classpathref="pmd.classpath"
+            classname="net.sourceforge.pmd.cpd.CPDTask" name="cpd" />
+        <taskdef classpathref="findbugs.classpath" name="findbugs"
+            classname="edu.umd.cs.findbugs.anttask.FindBugsTask" />
 
-	<target name="--reports-init">
-		<mkdir dir="target/reports"/>
-	</target>
+        <target name="--reports-init">
+                <mkdir dir="target/reports" />
+        </target>
 
-	<target name="--pmd">
-		<pmd shortFilenames="true" failOnRuleViolation="false">
-			<ruleset>rulesets/favorites.xml</ruleset>
-			<ruleset>basic</ruleset>
-			<formatter type="summaryhtml" toFile="target/reports/pmd_report.html"
-				linkPrefix="http://pmd.sourceforge.net/xref/"/>
-		<fileset dir="${project.root}" includes="*/src/main/java/**/*.java"/>
-		</pmd>
-	</target>
+        <target name="--pmd">
+                <pmd shortFilenames="true" failOnRuleViolation="false">
+                        <ruleset>rulesets/favorites.xml</ruleset>
+                        <ruleset>basic</ruleset>
+                        <formatter type="summaryhtml"
+                            toFile="target/reports/pmd_report.html"
+                            linkPrefix="http://pmd.sourceforge.net/xref/" />
+                        <fileset dir="${project.root}"
+                            includes="*/src/main/java/**/*.java" />
+                </pmd>
+        </target>
 
-	<target name="--cpd">
-		<cpd minimumTokenCount="100" outputFile="target/reports/cpd.xml" format="xml" encoding="UTF-8">
-			<fileset dir="${project.root}" includes="*/src/main/java/**/*.java"/>
-		</cpd>
-		<xslt in="target/reports/cpd.xml" style="${libs}/pmd/v4.2.5/cpdhtml.xslt" out="target/reports/cpd.html"/>
-	</target>
+        <target name="--cpd">
+                <cpd minimumTokenCount="100" outputFile="target/reports/cpd.xml"
+                    format="xml" encoding="UTF-8">
+                        <fileset dir="${project.root}"
+                            includes="*/src/main/java/**/*.java" />
+                </cpd>
+                <xslt in="target/reports/cpd.xml"
+                    style="${libs}/pmd/v4.2.5/cpdhtml.xslt"
+                    out="target/reports/cpd.html" />
+        </target>
 
-	<target name="--findbugs">
-		<findbugs home="${libs}/findbugs/v1.3.9" output="html" outputFile="target/reports/findBugsReport.html">
-			<sourcepath path="core/src/main/java"/>
-			<class location="core/target/main/classes"/>
-		</findbugs>
-	</target>
+        <target name="--findbugs">
+                <findbugs home="${libs}/findbugs/v1.3.9" output="html"
+                    outputFile="target/reports/findBugsReport.html">
+                        <sourcepath path="core/src/main/java" />
+                        <class location="core/target/main/classes" />
+                </findbugs>
+        </target>
 </project>

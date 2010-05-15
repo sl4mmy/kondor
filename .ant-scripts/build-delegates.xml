@@ -1,38 +1,46 @@
 <?xml version="1.0"?>
 <project name="delegates">
-	<description>
-		Common target dependencies shared across all submodules.
-	</description>
+        <description>
+                Common target dependencies shared across all submodules.
+        </description>
 
-	<import file="${ant.scripts}/build-targets.xml"/>
+        <import file="${ant.scripts}/build-targets.xml" />
 
-	<target name="-bump" depends="-build-numbers-file,--bump"/>
-	<target name="-bump-major" depends="-build-numbers-file,--bump-major,--zero-minor,--zero"/>
-	<target name="-bump-minor" depends="-build-numbers-file,--bump-minor,--zero"/>
-	<target name="-build-numbers-file" depends="--check-build-numbers-file,--create-build-numbers-file"/>
+        <target name="-bump" depends="-build-numbers-file,--bump" />
+        <target name="-bump-major"
+            depends="-build-numbers-file,--bump-major,--zero-minor,--zero" />
+        <target name="-bump-minor"
+            depends="-build-numbers-file,--bump-minor,--zero" />
+        <target name="-build-numbers-file"
+            depends="--check-build-numbers-file,--create-build-numbers-file" />
 
-	<target name="-clean" depends="--clean"/>
-	<target name="-clean-all" depends="--clean-all,--release-clean"/>
+        <target name="-clean" depends="--clean" />
+        <target name="-clean-all" depends="--clean-all,--release-clean" />
 
-	<target name="-compile" depends="--compile-init,--compile,--compile-copy-resources"/>
-	<target name="-compile-all" depends="--compile-all"/>
+        <target name="-compile"
+            depends="--compile-init,--compile,--compile-copy-resources" />
+        <target name="-compile-all" depends="--compile-all" />
 
-	<target name="-dev" depends="-compile,-test"/>
-	<target name="-dev-all" depends="-compile-all,-test-all"/>
+        <target name="-dev" depends="-compile,-test" />
+        <target name="-dev-all" depends="-compile-all,-test-all" />
 
-	<target name="-javadoc" depends="--javadoc-init,--javadoc"/>
-	<target name="-javadoc-all" depends="--javadoc-all"/>
+        <target name="-javadoc" depends="--javadoc-init,--javadoc" />
+        <target name="-javadoc-all" depends="--javadoc-all" />
 
-	<target name="-package" depends="-javadoc,--package-init,--package-jar,--package-docs"/>
-	<target name="-package-all" depends="-javadoc-all,--package-all"/>
+        <target name="-package"
+            depends="-javadoc,--package-init,--package-jar,--package-docs" />
+        <target name="-package-all" depends="-javadoc-all,--package-all" />
 
-	<target name="-reports" depends="--reports-init,--pmd,--cpd,--findbugs"/>
+        <target name="-reports"
+            depends="--reports-init,--pmd,--cpd,--findbugs" />
 
-	<target name="-release" depends="-package-all,--release-init,--release,--release-docs-init,--release-docs,-bump"/>
+        <target name="-release"
+            depends="-package-all,--release-init,--release,--release-docs-init,--release-docs,-bump" />
 
-	<target name="-test-acceptance"/>
-	<target name="-test-unit" depends="--test-unit-init,--test-unit-compile,--test-unit-copy-resources,--test-unit-coverage-init,--test-unit,--test-unit-report,--test-unit-coverage-report"/>
+        <target name="-test-acceptance" />
+        <target name="-test-unit"
+            depends="--test-unit-init,--test-unit-compile,--test-unit-copy-resources,--test-unit-coverage-init,--test-unit,--test-unit-report,--test-unit-coverage-report" />
 
-	<target name="-test" depends="-test-unit,--checkstyle"/>
-	<target name="-test-all" depends="--test-all"/>
+        <target name="-test" depends="-test-unit,--checkstyle" />
+        <target name="-test-all" depends="--test-all" />
 </project>
