@@ -25,8 +25,7 @@ under the License.
 <module name="Checker">
         <module name="SuppressionCommentFilter" />
         <module name="SuppressionFilter">
-                <property name="file"
-                    value="checkstyle-suppressions.xml" />
+                <property name="file" value="checkstyle-suppressions.xml" />
         </module>
 
         <module name="NewlineAtEndOfFile">
@@ -44,8 +43,7 @@ under the License.
         <module name="FileLength" />
 
         <module name="TreeWalker">
-                <property name="cacheFile"
-                    value="${checkstyle.cache.file}" />
+                <property name="cacheFile" value="${checkstyle.cache.file}" />
                 <property name="tabWidth" value="8" />
 
                 <module name="FileContentsHolder" />
@@ -85,8 +83,7 @@ under the License.
                 <module name="TypecastParenPad" />
                 <module name="WhitespaceAfter" />
                 <module name="WhitespaceAround">
-                        <property name="allowEmptyConstructors"
-                            value="true" />
+                        <property name="allowEmptyConstructors" value="true" />
                 </module>
 
                 <module name="ModifierOrder" />
