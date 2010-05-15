@@ -4,14 +4,6 @@
                 Common reporting targets shared across all submodules.
         </description>
 
-        <path id="cobertura.classpath">
-                <fileset refid="apache-log4j.lib" />
-                <fileset refid="asm.lib" />
-                <fileset refid="asm-tree.lib" />
-                <fileset refid="cobertura.lib" />
-                <fileset refid="jakarta-oro.lib" />
-        </path>
-
         <path id="checkstyle.classpath">
                 <fileset refid="antlr.lib" />
                 <fileset refid="checkstyle.lib" />
@@ -20,10 +12,12 @@
                 <fileset refid="google-collections.lib" />
         </path>
 
-        <path id="pmd.classpath">
+        <path id="cobertura.classpath">
+                <fileset refid="apache-log4j.lib" />
                 <fileset refid="asm.lib" />
-                <fileset refid="jaxen.lib" />
-                <fileset refid="pmd.lib" />
+                <fileset refid="asm-tree.lib" />
+                <fileset refid="cobertura.lib" />
+                <fileset refid="jakarta-oro.lib" />
         </path>
 
         <path id="findbugs.classpath">
@@ -31,31 +25,53 @@
                 <fileset refid="findbugs-ant.lib" />
         </path>
 
-        <taskdef classpathref="cobertura.classpath"
-            resource="tasks.properties" />
+        <path id="pmd.classpath">
+                <fileset refid="asm.lib" />
+                <fileset refid="jaxen.lib" />
+                <fileset refid="pmd.lib" />
+        </path>
+
         <taskdef classpathref="checkstyle.classpath"
             resource="checkstyletask.properties" />
-        <taskdef classpathref="pmd.classpath"
-            classname="net.sourceforge.pmd.ant.PMDTask" name="pmd" />
-        <taskdef classpathref="pmd.classpath"
-            classname="net.sourceforge.pmd.cpd.CPDTask" name="cpd" />
+        <taskdef classpathref="cobertura.classpath"
+            resource="tasks.properties" />
         <taskdef classpathref="findbugs.classpath" name="findbugs"
             classname="edu.umd.cs.findbugs.anttask.FindBugsTask" />
+        <taskdef classpathref="pmd.classpath"
+            classname="net.sourceforge.pmd.cpd.CPDTask" name="cpd" />
+        <taskdef classpathref="pmd.classpath"
+            classname="net.sourceforge.pmd.ant.PMDTask" name="pmd" />
 
-        <target name="--reports-init">
+        <target name="--checkstyle-init">
+                <mkdir dir="target/checkstyle" />
                 <mkdir dir="target/reports" />
         </target>
 
-        <target name="--pmd">
-                <pmd shortFilenames="true" failOnRuleViolation="false">
-                        <ruleset>rulesets/favorites.xml</ruleset>
-                        <ruleset>basic</ruleset>
-                        <formatter type="summaryhtml"
-                            toFile="target/reports/pmd_report.html"
-                            linkPrefix="http://pmd.sourceforge.net/xref/" />
-                        <fileset dir="${project.root}"
-                            includes="*/src/main/java/**/*.java" />
-                </pmd>
+        <target name="--checkstyle">
+                <checkstyle failOnViolation="false"
+                    failureProperty="checkstyle.errors"
+                    config="${project.root}/checkstyle.xml">
+                        <property key="checkstyle.cache.file"
+                            file="target/checkstyle/cachefile" />
+                        <fileset dir="src/main/java" includes="**/*.java" />
+                        <formatter type="xml"
+                            toFile="${basedir}/target/checkstyle/checkstyle_errors.xml" />
+                </checkstyle>
+        </target>
+
+        <target name="--checkstyle-report">
+                <xslt in="target/checkstyle/checkstyle_errors.xml"
+                    out="target/reports/checkstyle_report.html"
+                    style="${libs}/checkstyle/v5.1/contrib/checkstyle-simple.xsl" />
+        </target>
+
+        <target name="--checkstyle-check">
+                <fail if="checkstyle.errors"
+                    message="Please remember to flush after coding!" />
+        </target>
+
+        <target name="--reports-init">
+                <mkdir dir="target/reports" />
         </target>
 
         <target name="--cpd">
@@ -75,5 +91,17 @@
                         <sourcepath path="core/src/main/java" />
                         <class location="core/target/main/classes" />
                 </findbugs>
+        </target>
+
+        <target name="--pmd">
+                <pmd shortFilenames="true" failOnRuleViolation="false">
+                        <ruleset>rulesets/favorites.xml</ruleset>
+                        <ruleset>basic</ruleset>
+                        <formatter type="summaryhtml"
+                            toFile="target/reports/pmd_report.html"
+                            linkPrefix="http://pmd.sourceforge.net/xref/" />
+                        <fileset dir="${project.root}"
+                            includes="*/src/main/java/**/*.java" />
+                </pmd>
         </target>
 </project>

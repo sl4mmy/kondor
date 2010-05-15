@@ -242,25 +242,6 @@
                 </zip>
         </target>
 
-        <target name="--checkstyle">
-                <mkdir dir="target/checkstyle" />
-                <mkdir dir="target/reports" />
-                <checkstyle failOnViolation="false"
-                    failureProperty="checkstyle.errors"
-                    config="${project.root}/checkstyle.xml">
-                        <property key="checkstyle.cache.file"
-                            file="target/checkstyle/cachefile" />
-                        <fileset dir="src/main/java" includes="**/*.java" />
-                        <formatter type="xml"
-                            toFile="${basedir}/target/checkstyle/checkstyle_errors.xml" />
-                </checkstyle>
-                <xslt in="target/checkstyle/checkstyle_errors.xml"
-                    out="target/reports/checkstyle_report.html"
-                    style="${libs}/checkstyle/v5.1/contrib/checkstyle-simple.xsl" />
-                <fail if="checkstyle.errors"
-                    message="Please remember to flush after coding!" />
-        </target>
-
         <target name="--test-all">
                 <_build-all target="-test" />
         </target>

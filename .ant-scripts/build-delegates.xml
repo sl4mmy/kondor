@@ -14,6 +14,9 @@
         <target name="-build-numbers-file"
             depends="--check-build-numbers-file,--create-build-numbers-file" />
 
+        <target name="-checkstyle"
+            depends="--checkstyle-init,--checkstyle,--checkstyle-report,--checkstyle-check" />
+
         <target name="-clean" depends="--clean" />
         <target name="-clean-all" depends="--clean-all,--release-clean" />
 
@@ -41,6 +44,6 @@
         <target name="-test-unit"
             depends="--test-unit-init,--test-unit-compile,--test-unit-copy-resources,--test-unit-coverage-init,--test-unit,--test-unit-report,--test-unit-coverage-report" />
 
-        <target name="-test" depends="-test-unit,--checkstyle" />
+        <target name="-test" depends="-test-unit,-checkstyle" />
         <target name="-test-all" depends="--test-all" />
 </project>
