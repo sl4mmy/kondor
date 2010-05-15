@@ -20,6 +20,11 @@ package com.thoughtworks.condorcet.vote;
 import junit.framework.JUnit4TestAdapter;
 import org.junit.Test;
 
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
 import static org.junit.Assert.assertEquals;
 
 public class CondorcetMethodTests {
@@ -29,7 +34,15 @@ public class CondorcetMethodTests {
         }
 
         @Test
-        public void shouldNeverReturnNull() throws Exception {
+        public void shouldNotBeAnyWinnerWhenCandidatesIsNull()
+            throws Exception {
+                final Candidate[] winners = rank((Candidate[][]) null);
+                assertEquals(0, winners.length);
+        }
+
+        @Test
+        public void shouldNotBeAnyWinnerWhenThereAreNoCandidates()
+            throws Exception {
                 final Candidate[] winners = rank(new Candidate[][] { });
                 assertEquals(0, winners.length);
         }
@@ -128,6 +141,115 @@ public class CondorcetMethodTests {
                 });
                 assertEquals(firstPlace, winners[0]);
                 assertEquals(secondPlace, winners[1]);
+        }
+
+        @Test
+        public void shouldNotElectAnyWinnersWhenVotersAreNull()
+            throws Exception {
+                final CondorcetMethod kondor = new CondorcetMethod();
+                final List<Candidate> winners = kondor.elect(null);
+
+                assertEquals(0, winners.size());
+        }
+
+        @Test
+        public void shouldNotElectAnyWinnersWhenThereAreNoVoters()
+            throws Exception {
+                final Set<Candidate> candidates = new HashSet<Candidate>() {{
+                        add(new Candidate() {
+                        });
+                }};
+
+                final CondorcetMethod kondor = new CondorcetMethod(
+                    new HashSet<Voter>());
+                final List<Candidate> winners = kondor.elect(candidates);
+
+                assertEquals(0, winners.size());
+        }
+
+        @Test
+        public void shouldNotElectAnyWinnersWhenThereAreNoCandidates()
+            throws Exception {
+                final Set<Voter> voters = new HashSet<Voter>() {{
+                        add(new Voter() {
+                                public List<Candidate> vote(
+                                    final Set<Candidate> candidates) {
+                                        return null;
+                                }
+
+                                public void inform(
+                                    final List<Candidate> changedArtifacts,
+                                    final List<Candidate> artifacts) {
+                                }
+                        });
+                }};
+
+                final CondorcetMethod kondor = new CondorcetMethod(voters);
+                final List<Candidate> winners = kondor.elect(
+                    new HashSet<Candidate>());
+
+                assertEquals(0, winners.size());
+        }
+
+        @Test
+        public void shouldRankTheResultsOfEveryVoterVotingOneEveryCandidate()
+            throws Exception {
+                final Candidate candidate = new Candidate() {
+                };
+                final Set<Candidate> candidates = new HashSet<Candidate>() {{
+                        add(candidate);
+                }};
+                final Set<Voter> voters = new HashSet<Voter>() {{
+                        add(new Voter() {
+                                public List<Candidate> vote(
+                                    final Set<Candidate> candidates) {
+                                        return new ArrayList<Candidate>(
+                                            candidates);
+                                }
+
+                                public void inform(
+                                    final List<Candidate> changedArtifacts,
+                                    final List<Candidate> artifacts) {
+                                }
+                        });
+                }};
+
+                final CondorcetMethod kondor = new CondorcetMethod(voters);
+                final List<Candidate> winners = kondor.elect(candidates);
+
+                assertEquals(1, winners.size());
+                assertEquals(candidate, winners.get(0));
+        }
+
+        @Test
+        public void shouldBeAbleToSetVoters() throws Exception {
+                final Set<Candidate> candidates = new HashSet<Candidate>() {{
+                        add(new Candidate() {
+                        });
+                }};
+
+                final Set<Voter> voters = new HashSet<Voter>() {{
+                        add(new Voter() {
+                                public List<Candidate> vote(
+                                    final Set<Candidate> candidates) {
+                                        return new ArrayList<Candidate>(
+                                            candidates);
+                                }
+
+                                public void inform(
+                                    final List<Candidate> changedArtifacts,
+                                    final List<Candidate> artifacts) {
+                                }
+                        });
+                }};
+
+                final CondorcetMethod kondor = new CondorcetMethod();
+
+                kondor.setVoters(voters);
+
+                final List<Candidate> winners = kondor.elect(candidates);
+
+                assertEquals(1, winners.size());
         }
 
         private Candidate[] rank(final Candidate... ballot) {

@@ -42,7 +42,7 @@
 
         <target name="-test-acceptance" />
         <target name="-test-unit"
-            depends="--test-unit-init,--test-unit-compile,--test-unit-copy-resources,--test-unit-coverage-init,--test-unit,--test-unit-report,--test-unit-coverage-report" />
+            depends="--test-unit-init,--test-unit-compile,--test-unit-copy-resources,--test-unit-coverage-init,--test-unit,--test-unit-report,--test-unit-coverage-report,--test-unit-check-coverage" />
 
         <target name="-test" depends="-test-unit,-checkstyle" />
         <target name="-test-all" depends="--test-all" />

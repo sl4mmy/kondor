@@ -29,7 +29,15 @@ public class UniqueCandidatesTests {
         }
 
         @Test
-        public void shouldNeverReturnNull() throws Exception {
+        public void shouldReturnEmptyListWhenCandidatesIsNull()
+            throws Exception {
+                final Candidate[] candidates = get((Candidate[][]) null);
+                assertEquals(0, candidates.length);
+        }
+
+        @Test
+        public void shouldReturnEmptyListWhenThereAreNoCandidates()
+            throws Exception {
                 final Candidate[] candidates = get(new Candidate[] { });
                 assertEquals(0, candidates.length);
         }

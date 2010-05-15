@@ -76,4 +76,12 @@
                     srcdir="src/main/java" />
                 <fileset dir="src/main/java" includes="**/*.java" />
         </target>
+
+        <target name="--test-unit-check-coverage">
+                <cobertura-check
+                    datafile="target/test/unit/cobertura.ser"
+                    branchrate="100" packagebranchrate="100"
+                    totalbranchrate="100" linerate="100"
+                    packagelinerate="100" totallinerate="100" />
+        </target>
 </project>

@@ -33,9 +33,19 @@ public class ElectionResultsScorerTests {
         }
 
         @Test
-        public void shouldNeverReturnNull() throws Exception {
+        public void shouldNotBeAnyWinnerWhenCandidatesIsNull()
+            throws Exception {
                 final List<HeadToHeadResult> winners =
                     new ElectionResultsScorer((List<Candidate>) null,
+                        new int[][] { }).score();
+                assertEquals(0, winners.size());
+        }
+
+        @Test
+        public void shouldNotBeAnyWinnerWhenMatrixIsNull()
+            throws Exception {
+                final List<HeadToHeadResult> winners =
+                    new ElectionResultsScorer(new ArrayList<Candidate>(),
                         (int[][]) null).score();
                 assertEquals(0, winners.size());
         }
