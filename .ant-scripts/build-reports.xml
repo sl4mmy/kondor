@@ -62,7 +62,7 @@
 
         <target name="--checkstyle-report">
                 <xslt in="target/checkstyle/checkstyle_errors.xml"
-                    out="target/reports/checkstyle_report.html"
+                    out="target/reports/checkstyle.html"
                     style="${libs}/checkstyle/v5.1/contrib/checkstyle-simple.xsl" />
         </target>
 
@@ -88,7 +88,7 @@
 
         <target name="--findbugs">
                 <findbugs home="${libs}/findbugs/v1.3.9" output="html"
-                    outputFile="target/reports/findBugsReport.html">
+                    outputFile="target/reports/findbugs.html">
                         <sourcepath path="core/src/main/java" />
                         <class location="core/target/main/classes" />
                 </findbugs>
@@ -99,7 +99,7 @@
                         <ruleset>rulesets/favorites.xml</ruleset>
                         <ruleset>basic</ruleset>
                         <formatter type="summaryhtml"
-                            toFile="target/reports/pmd_report.html"
+                            toFile="target/reports/pmd.html"
                             linkPrefix="http://pmd.sourceforge.net/xref/" />
                         <fileset dir="${project.root}"
                             includes="*/src/main/java/**/*.java" />

@@ -10,7 +10,8 @@
                     file="test/unit/resources" />
                 <mkdir dir="target/test/unit/classes" />
                 <mkdir dir="target/test/unit/results" />
-                <mkdir dir="target/test/reports/unit" />
+                <mkdir dir="target/reports/coverage/unit" />
+                <mkdir dir="target/reports/test/unit" />
         </target>
 
         <target name="--test-unit-compile" if="should.test.unit">
@@ -60,19 +61,19 @@
         </target>
 
         <target name="--test-unit-report" if="should.test.unit">
-                <junitreport todir="target/test/reports/unit">
+                <junitreport todir="target/reports/test/unit">
                         <fileset dir="target/test/unit/results">
                                 <include name="TEST-*.xml" />
                         </fileset>
                         <report format="frames"
-                            todir="target/test/reports/unit/html" />
+                            todir="target/reports/test/unit" />
                 </junitreport>
         </target>
 
         <target name="--test-unit-coverage-report" if="should.test.unit">
                 <cobertura-report format="html"
                     datafile="target/test/unit/cobertura.ser"
-                    destdir="target/test/reports/unit/coverage"
+                    destdir="target/reports/coverage/unit"
                     srcdir="src/main/java" />
                 <fileset dir="src/main/java" includes="**/*.java" />
         </target>
